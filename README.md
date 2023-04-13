@@ -1,4 +1,4 @@
-<h1 align="center">Nome do Projeto</h1>
+<h1 align="center">Miau</h1>
 
 <p align="center">Projeto da disciplina: Desenvolvimento de Aplivativos</p>
 
@@ -9,6 +9,7 @@
     - [Baixando o projeto do GitHub](#baixando-o-projeto-do-github)
 - [Instalação](#instalação)
     - [Rodando o projeto](#rodando-o-projeto)
+- [Tecnologias](#tecnologias)
 <!--te-->
 
 Pré-requisitos
@@ -37,3 +38,13 @@ npx expo start
 # Se estiver rodando no WSL2, use o comando abaixo
 npx expo start --tunnel
 ```
+leia o QR Code com o aplicativo do Expo no seu celular ou use um emulador Android/iOS.
+
+Tecnologias
+==============
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.io/)
+- [Node.js](https://nodejs.org/en/)
