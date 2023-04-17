@@ -36,6 +36,9 @@ Instalação
 npx expo start
 
 # Se estiver rodando no WSL2, use o comando abaixo
+#instale o pacote:
+npm i -g @expo/ngrok
+
 npx expo start --tunnel
 ```
 leia o QR Code com o aplicativo do Expo no seu celular ou use um emulador Android/iOS.
