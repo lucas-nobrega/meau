@@ -96,7 +96,6 @@ export default function App() {
             },
             headerTintColor: '#434343',
             headerTitleStyle: {
-              fontFamily: 'Roboto Medium',
               fontWeight: 'bold',
             },
             headerLeft: () => (
@@ -119,7 +118,6 @@ export default function App() {
             },
             headerTintColor: '#434343',
             headerTitleStyle: {
-              fontFamily: 'Roboto Medium',
               fontWeight: 'bold',
             },
             headerLeft: () => (
@@ -142,7 +140,6 @@ export default function App() {
             },
             headerTintColor: '#434343',
             headerTitleStyle: {
-              fontFamily: 'Roboto Medium',
               fontWeight: 'bold',
             },
             headerLeft: () => (
