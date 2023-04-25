@@ -4,83 +4,26 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { withTheme } from 'react-native-paper';
+import CadastroPessoal from './src/components/Autenticacao/Cadastros/CadastroPessoal';
+import CadastroAnimal from './src/components/Autenticacao/Cadastros/CadastroAnimal';
 
 
 const Stack = createNativeStackNavigator();
 
-function TelaInicial({ navigation }) {
+function Home({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="ENTRAR"
-          onPress={() => navigation.navigate('Details')}
-        />
-        <Button
-          title="ENTRAR COM FACEBOOK"
-          onPress={() => navigation.navigate('Details')}
-        />
-        <Button
-          title="ENTRAR COM GOOGLE"
-          onPress={() => navigation.navigate('Details')}
-        />
         <Button
           title="Cadastro pessoal"
-          onPress={() => navigation.navigate('CadatroPessoal')}
+          onPress={() => navigation.navigate('CadastroPessoal')}
         />
-        <Button
-          title="Cadastro de animais"
-          onPress={() => navigation.navigate('CadatroAnimais')}
-        />
+      <Button
+        title="Cadastro animal"
+        onPress={() => navigation.navigate('CadastroAnimal')}
+      />
     </View>
   );
 }
-
-function CadatroPessoal({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="ENTRAR"
-          onPress={() => navigation.navigate('TelaInicial')}
-        />
-        <input
-          id={id}
-          type={type}
-          className="w-full p-5 font-medium border rounded-md border-slate-300 placeholder:opacity-60"
-          placeholder={placeholder}
-          {...register(label, {
-            required: {
-              value: true,
-              message: 'required',
-            },
-          })}
-        />
-    </View>
-  );
-}
-
-function CadatroAnimais({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="ENTRAR"
-          onPress={() => navigation.navigate('Details')}
-        />
-        <input
-          id={id}
-          type={type}
-          className="w-full p-5 font-medium border rounded-md border-slate-300 placeholder:opacity-60"
-          placeholder={placeholder}
-          {...register(label, {
-            required: {
-              value: true,
-              message: 'required',
-            },
-          })}
-        />
-    </View>
-  );
-}
-
 
 export default function App() {
   return (
@@ -88,9 +31,9 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          component={TelaInicial}
+          component={Home}
           options={{
-            title: 'Login',
+            title: 'Home',
             headerStyle: {
               backgroundColor: '#cfe9e5',
             },
@@ -98,21 +41,13 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerLeft: () => (
-              <Button
-                onPress={() => alert('This is a button!')}
-                title="menu"
-                color="#434343"
-                headerBackImageSource="menu"
-              />
-            ),
           }}
         />
         <Stack.Screen
-          name="Cadatro Pessoal"
-          component={CadatroPessoal}
+          name="CadastroPessoal"
+          component={CadastroPessoal}
           options={{
-            title: 'Login',
+            title: 'Cadastro Pessoal',
             headerStyle: {
               backgroundColor: '#cfe9e5',
             },
@@ -120,21 +55,13 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerLeft: () => (
-              <Button
-                onPress={() => navigation.navigate('CadatroPessoal')}
-                title="menu"
-                color="#434343"
-                headerBackImageSource="menu"
-              />
-            ),
           }}
         />
         <Stack.Screen
-          name="Cadatro Animais"
-          component={CadatroAnimais}
+          name="CadastroAnimal"
+          component={CadastroAnimal}
           options={{
-            title: 'Login',
+            title: 'Cadastro Animal',
             headerStyle: {
               backgroundColor: '#cfe9e5',
             },
@@ -142,14 +69,6 @@ export default function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerLeft: () => (
-              <Button
-                onPress={() => navigation.navigate('CadatroAnimais')}
-                title="menu"
-                color="#434343"
-                headerBackImageSource="menu"
-              />
-            ),
           }}
         />
       </Stack.Navigator>
