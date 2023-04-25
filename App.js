@@ -1,8 +1,5 @@
-// Impot bootstrap
-import 'bootstrap/dist/css/bootstrap.css';
-
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Login from './componentes/Login';
 import Home from './componentes/Home';
