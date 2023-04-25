@@ -1,26 +1,29 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { StyleSheet, View } from 'react-native';
+import * as React from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Login from './componentes/Login';
 import Home from './componentes/Home';
 
-export default function App() {
+function HomeScreen() {
   return (
-    <BrowserRouter>
-      <View style={styles.container}>
-        <View>
-          <Routes>
-            <Route exact path="/" Component={Home}/>
-            <Route exact path="/login" Component={Login}/>
-          </Routes>
-        </View>
-      </View>
-    </BrowserRouter>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="/" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
