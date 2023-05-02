@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, ScrollView, SafeAreaView, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 
