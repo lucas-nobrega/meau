@@ -37,7 +37,7 @@ export default function Home() {
                 backgroundColor="#88c9bf"
             />
             <Input
-                placeholder='e-mail'
+                placeholder='E-mail'
                 onChange={(e) =>setEmail(e.target.value)}
             />
             <Input
@@ -51,42 +51,50 @@ export default function Home() {
                 loading={false}
                 loadingProps={{ size: 'small', color: 'white' }}
                 buttonStyle={{
-                backgroundColor: 'rgba(111, 202, 186, 1)',
-                borderRadius: 5,
+                    backgroundColor: '#88c9bf',
+                    borderRadius: 5,
                 }}
-                titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+                titleStyle={{ fontWeight: 'Roboto Regular', fontSize: 12, color: '#434343' }}
                 containerStyle={{
-                marginHorizontal: 50,
-                height: 50,
-                width: 200,
-                marginVertical: 10,
+                    marginHorizontal: 50,
+                    height: 50,
+                    width: 200,
+                    marginVertical: 10,
                 }}
                 onPress={handleSignIn}
             />
             <Button radius={'sm'} type="solid"
-                titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+                titleStyle={{ fontWeight: 'Roboto Regular', fontSize: 12 }}
                 containerStyle={{
-                marginHorizontal: 50,
-                height: 50,
-                width: 200,
-                marginVertical: 10,
+                    marginHorizontal: 50,
+                    height: 50,
+                    width: 200,
+                    marginVertical: 10,
+                }}
+                buttonStyle={{
+                    backgroundColor: '#194f7c',
+                    borderRadius: 5,
                 }}
                 onPress={() => console.log('aye')}
             >
-                <Icon name="save" color="white" />
+                <Icon name="facebook" color="white" />
                 ENTRAR COM FACEBOOK
             </Button>
             <Button radius={'sm'} type="solid"
-                titleStyle={{ fontWeight: 'bold', fontSize: 23 }}
+                titleStyle={{ fontWeight: 'Roboto Regular', fontSize: 12 }}
                 containerStyle={{
-                marginHorizontal: 50,
-                height: 50,
-                width: 200,
-                marginVertical: 10,
+                    marginHorizontal: 50,
+                    height: 50,
+                    width: 200,
+                    marginVertical: 10,
+                }}
+                buttonStyle={{
+                    backgroundColor: '#f15f5c',
+                    borderRadius: 5,
                 }}
                 onPress={() => console.log('aye')}
             >
-                <Icon name="save" color="white" />
+                <Icon name="google-plus" color="white" />
                 ENTRAR COM GOOGLE
             </Button>
         </SafeAreaProvider>
