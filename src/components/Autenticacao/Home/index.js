@@ -94,7 +94,7 @@ export default function Home() {
                 }}
                 onPress={() => console.log('aye')}
             >
-                <Icon name="google-plus" color="white" />
+                <Icon name="facebook" color="white" />
                 ENTRAR COM GOOGLE
             </Button>
         </SafeAreaProvider>
@@ -110,12 +110,10 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingVertical: 15,
     },
-
     heading: {
         color: '#434343',
         fontSize: 20,
         fontWeight: 'bold',
-        justifyContent: 'left',
     },
     subheaderText: {
         color: 'white',
