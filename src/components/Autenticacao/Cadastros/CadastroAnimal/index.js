@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, TouchableOpacity, ScrollView, Text, TextInput, View, StyleSheet } from 'react-native';
 import RadioButton from './RadioButton';
 import { Feather } from '@expo/vector-icons';
-import { Form } from 'react-bootstrap';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function CadastroAnimal({ navigation }) {
     const options = [{
@@ -16,7 +16,7 @@ export default function CadastroAnimal({ navigation }) {
         value: 'Ajuda'
     }];
     return (
-        <ScrollView contentContainerStyle={styles.contentContainer}>
+        <SafeAreaProvider contentContainerStyle={styles.contentContainer}>
             <Text>Tenho Interesse em cadastrar um animal para:</Text>
             <RadioButton options={options} />
 
@@ -71,10 +71,10 @@ export default function CadastroAnimal({ navigation }) {
                     multiline={true}
                 />
             </View>
-            <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
+            <TouchableOpacity style={styles.button} onPress="">
                 <Text style={styles.buttonText}>COLOCAR PARA ADOÇÃO</Text>
             </TouchableOpacity>
-        </ScrollView>
+        </SafeAreaProvider>
     );
 }
 

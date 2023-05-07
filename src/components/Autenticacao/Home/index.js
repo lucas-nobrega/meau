@@ -1,11 +1,13 @@
-import { React, useState } from 'react';
-import { StyleSheet, Linking } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { Header as HeaderRNE } from '@rneui/themed';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { Input, Button, Icon } from '@rneui/themed';
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from './firebaseConfig';
+
+
 
 export default function Home() {
     const [email, setEmail] = useState("");
@@ -23,7 +25,11 @@ export default function Home() {
       return <p>carregando...</p>;
     }
     if (user) {
-      return console.log(user);
+        return console.log(user);
+        /*<CadastroPessoal />*/
+    }
+    if (error) {
+        return console.log(error.code);
     }
 
     return (

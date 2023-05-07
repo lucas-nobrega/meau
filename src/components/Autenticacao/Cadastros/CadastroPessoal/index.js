@@ -1,84 +1,69 @@
 import * as React from 'react';
 import { ScrollView, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Feather } from '@expo/vector-icons';
 
 export default function CadastroPessoal({ navigation }) {
-
-    const pickImageAsync = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: true,
-            quality: 1,
-        });
-
-        if (!result.canceled) {
-            console.log(result);
-        } else {
-            alert('You did not select any image.');
-        }
-    };
-
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <SafeAreaProvider contentContainerStyle={styles.contentContainer}>
+            <Text style={styles.info} > As informacoes preenchidas serao  divulgas apenas para a pessoal com a qual voce realizar o processo de adoção e/ou apadrinhamento,
+                após a formalização do processo.</Text>
+            <Text style={styles.text} > INFORMAÇÕES PESSOAIS </Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Nome Completo"
 
-                <Text style={styles.info} > As informacoes preenchidas serao  divulgas apenas para a pessoal com a qual voce realizar o processo de adoção e/ou apadrinhamento,
-                    após a formalização do processo.</Text>
-                <Text style={styles.text} > INFORMAÇÕES PESSOAIS </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Nome Completo"
-
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Idade"
-                />
-                <TextInput
-                    style={styles.input}
-                    keyboardType='email-address'
-                    placeholder="Email"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Estado"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Cidade"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Endereço"
-                />
-                <TextInput
-                    style={styles.input}
-                    keyboardType='phone-pad'
-                    placeholder="Telefone"
-                />
-                <Text style={styles.text}> INFORMAÇÕES DE PERFIL </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Nome de usuario"
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Senha"
-                />
-                <TextInput
-                    style={styles.input}
-                    secureTextEntry={true}
-                    placeholder="Confirmação da senha"
-                />
-                <Text style={styles.text}> FOTO DE PERFIL </Text>
-                <TouchableOpacity style={styles.imagePicker}>
-                    <Feather name="plus-circle" size={24} color="#9D9D9E" />
-                    <Text style={{color: '#9D9D9E'}}>Adicionar Foto</Text>
-                </TouchableOpacity>
-                
-                <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
-                    <Text style={styles.buttonText}>Fazer Cadastro</Text>
-                </TouchableOpacity>
-            </ScrollView >
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Idade"
+            />
+            <TextInput
+                style={styles.input}
+                keyboardType='email-address'
+                placeholder="Email"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Estado"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Cidade"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Endereço"
+            />
+            <TextInput
+                style={styles.input}
+                keyboardType='phone-pad'
+                placeholder="Telefone"
+            />
+            <Text style={styles.text}> INFORMAÇÕES DE PERFIL </Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Nome de usuario"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Senha"
+            />
+            <TextInput
+                style={styles.input}
+                secureTextEntry={true}
+                placeholder="Confirmação da senha"
+            />
+            <Text style={styles.text}> FOTO DE PERFIL </Text>
+            <TouchableOpacity style={styles.imagePicker}>
+                <Feather name="plus-circle" size={24} color="#9D9D9E" />
+                <Text style={{color: '#9D9D9E'}}>Adicionar Foto</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.button} onPress="">
+                <Text style={styles.buttonText}>Fazer Cadastro</Text>
+            </TouchableOpacity>
+            </SafeAreaProvider>
     );
 }
 
