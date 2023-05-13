@@ -1,28 +1,20 @@
-import 'react-native-gesture-handler';
-import React,{ useEffect, useState } from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import Home from './src/components/Autenticacao/Home';
-import Sair from './src/components/Autenticacao/Home/Sair';
-import { SafeAreaView } from 'react-native';
-import { auth } from './src/components/Autenticacao/Home/firebaseConfig';
-
-
-const Stack = createNativeStackNavigator();
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((_user) => {
-      setUser(_user)
-    })
-    return unsubscribe;
-  }, []);
-
   return (
-    <SafeAreaView>
-      {user ? <Sair /> : <Home />}
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text>Open up App.js to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
