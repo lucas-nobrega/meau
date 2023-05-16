@@ -6,7 +6,9 @@ import { StyleSheet, Text, View, Pressable, Image, TouchableOpacity, SafeAreaVie
 import Home from './src/components/Home';
 import SignIn from './src/components/SignIn';
 import CadastroAnimal from './src/components/Register/CadastroAnimal';
+import CadastroPessoal from './src/components/Register/CadastroPessoal';
 import Introducao from './src/components/Introducao/Introducao';
+import TelaErroAutorizacao from './src/components/Error/TelaErroAutorizacao.jsx';
 import { auth } from './src/config/firebase/firebaseConfig';
 import { SafeAreaProvider } from 'react-native-safe-area-context'; 
 import { Icon } from '@rneui/themed';
@@ -34,7 +36,9 @@ export default function App() {
                 <Stack.Screen name='Introducao' component={Introducao} options={{title: '', headerLeft: () => <MenuButton/>, headerStyle: {backgroundColor: '#fff'}}} />
             )}
             <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Login', headerLeft: () => <Icon name="menu" />, headerStyle: { backgroundColor: '#cfe9e5' } }} />
-            <Stack.Screen name="Cadastro Animal" component={CadastroAnimal} options={{ headerShown: false }} />
+            <Stack.Screen name="Cadastro Pessoal" component={CadastroPessoal} options={{ title: 'Cadastro Pessoal', headerLeft: () => <Icon name="menu" />, headerStyle: { backgroundColor: '#cfe9e5' } }} />
+            <Stack.Screen name="Cadastro Animal" component={CadastroAnimal} options={{ title: 'Cadastro Animal', headerLeft: () => <Icon name="menu" />, headerStyle: { backgroundColor: '#cfe9e5' } }} />
+            <Stack.Screen name='Tela Erro Autorizacao' component={TelaErroAutorizacao} options={{ headerShown: false }} />
           </Stack.Navigator>
         </NavigationContainer>
         {/* {user ? <Home /> : <SignIn />} */}

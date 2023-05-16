@@ -5,8 +5,6 @@ import { Icon } from '@rneui/themed';
 
 const PlaceholderImage = require('./../../../assets/logo-introducao.png');
 
-const Stack = createNativeStackNavigator();
-
 export default function Intruducao({ navigation }) {
 
 
