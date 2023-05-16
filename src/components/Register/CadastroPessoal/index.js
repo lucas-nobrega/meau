@@ -48,7 +48,7 @@ export default function CadastroPessoal({ navigation }) {
           <Text style={{color: '#9D9D9E'}}>Adicionar Foto</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
+      <TouchableOpacity style={styles.button} onPress="">
           <Text style={styles.buttonText}>Fazer Cadastro</Text>
       </TouchableOpacity>
     </ScrollView>

@@ -71,7 +71,7 @@ export default function CadastroAnimal({ navigation }) {
                     multiline={true}
                 />
             </View>
-            <TouchableOpacity style={styles.button} onPress={this.handleSubmit}>
+            <TouchableOpacity style={styles.button} onPress="">
                 <Text style={styles.buttonText}>COLOCAR PARA ADOÇÃO</Text>
             </TouchableOpacity>
         </ScrollView>
