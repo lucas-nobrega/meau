@@ -4,7 +4,7 @@ import { Header as HeaderRNE, HeaderProps, Input, Button, Icon } from '@rneui/th
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons';
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { View, StyleSheet, Text, TextInput, SafeAreaView } from 'react-native';
 // Autentencação
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from '../../config/firebase/firebaseConfig';
@@ -36,45 +36,28 @@ export default function SignIn({ navigation }) {
   }
 
   return (
-    <>
-      <HeaderRNE
-        leftComponent={{
-          icon: 'menu',
-          color: '#fff',
-        }}
-        rightComponent={
-            <View style={styles.headerRight}>
-              <TouchableOpacity onPress="">
-                <Icon name="description" color="white" />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ marginLeft: 10 }}
-                onPress=""
-              >
-                <Icon type="antdesign" name="rocket1" color="white" />
-              </TouchableOpacity>
-            </View>
-        }
-        centerComponent={{ text: 'Header', style: styles.heading }}
-      />
-      <Input
-        placeholder='E-mail'
-        onChangeText={value => setEmail(value)}
-      />
-      <Input
-        placeholder="Password"
-        secureTextEntry={true}
-        onChangeText={value => setPassword(value)}
-      />
+    <SafeAreaView style={{ marginTop: 64}}>
+      <View style={{ marginEnd: 10, marginStart: 10 }}>
+        <Input
+          placeholder='E-mail'
+          onChangeText={value => setEmail(value)}
+        />
+        <Input
+          placeholder="Password"
+          secureTextEntry={true}
+          onChangeText={value => setPassword(value)}
+        />
+      </View>
+      
+      <View style={{ flexDirection: 'col', justifyContent: 'center', alignItems: 'center' }}>
       <Button
-          title="Log in"
           loading={false}
           loadingProps={{ size: 'small', color: 'white' }}
           buttonStyle={{
               backgroundColor: '#88c9bf',
               borderRadius: 5,
           }}
-          titleStyle={{ fontWeight: 'normal', fontSize: 12, color: '#434343' }}
+          titleStyle={{ fontWeight: 'normal', fontSize: 13, color: '#434343' }}
           containerStyle={{
               marginHorizontal: 50,
               height: 50,
@@ -82,9 +65,11 @@ export default function SignIn({ navigation }) {
               marginVertical: 10,
           }}
           onPress={handleSignIn}
-      />
+      >
+        ENTRAR
+      </Button>
       <Button radius={'sm'} type="solid"
-          titleStyle={{ fontWeight: 'normal', fontSize: 12 }}
+          titleStyle={{ fontWeight: 'normal', fontSize: 13 }}
           containerStyle={{
               marginHorizontal: 50,
               height: 50,
@@ -97,11 +82,11 @@ export default function SignIn({ navigation }) {
           }}
           onPress={() => console.log('aye')}
       >
-          <AntDesign name="facebook-square" color="white" />
-            ENTRAR COM FACEBOOK
+          <Icon name="facebook-f" color="white" type='font-awesome' />
+            &nbsp;&nbsp;&nbsp;ENTRAR COM FACEBOOK
       </Button>
       <Button radius={'sm'} type="solid"
-          titleStyle={{ fontWeight: 'normal', fontSize: 12 }}
+          titleStyle={{ fontWeight: 'normal', fontSize: 13 }}
           containerStyle={{
               marginHorizontal: 50,
               height: 50,
@@ -114,10 +99,29 @@ export default function SignIn({ navigation }) {
           }}
           onPress={() => console.log('aye')}
       >
-          <Entypo name="google-" color="white" />
-          ENTRAR COM GOOGLE
+          <Icon name="ios-logo-google" color="white" type='ionicon' />
+          &nbsp;&nbsp;&nbsp;ENTRAR COM GOOGLE
       </Button>
-    </>
+        <Button
+          loading={false}
+          loadingProps={{ size: 'small', color: 'white' }}
+          buttonStyle={{
+            backgroundColor: '#88c9bf',
+            borderRadius: 5,
+          }}
+          titleStyle={{ fontWeight: 'normal', fontSize: 13, color: '#434343' }}
+          containerStyle={{
+            marginHorizontal: 50,
+            height: 50,
+            width: 200,
+            marginVertical: 10,
+          }}
+          onPress={() => navigation.navigate('Tela Erro Autorizacao')}
+        >
+          teste tela de erro de autorização
+        </Button>
+      </View>
+    </SafeAreaView>
   );
 }
 
