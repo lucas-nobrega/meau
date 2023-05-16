@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 const appCloud = require('firebase/app');
 const appFirestore = require('firebase/firestore');
+const crypto = require('crypto');
+
 
 //TODO: Trocar os métodos 'require' do javascript para os imports do node
 //import { initializeApp } from 'firebase/app';
@@ -29,8 +31,38 @@ async function getAnimais(db) {
     const animalList = animalSnapshot.docs.map(doc => doc.data());
     console.log(animalList)
     return animalList;
-  }
+}
 
+async function inserirPessoa(nome, endereco, email, idade, telefone) {
+  const id = crypto.randomUUID();
+  pessoa = {
+    Nome: nome,
+    ID: id,
+    Endereco: endereco,
+    Email: email,
+    Idade: idade,
+    Telefone: telefone
+  }
+  const pessoasCol = appFirestore.collection(db, 'pessoas');
+  const pesssoaSnapshot = await appFirestore.addDoc(appFirestore.collection(db, "pessoas"), pessoa);
+}
+
+async function inserirAnimal(nome, idade, saude, fotos, porte, sexo, temperamento, especie) {
+  const id = crypto.randomUUID();
+  animal = {
+    Saude: saude,
+    Idade: idade,
+    Fotos: fotos,
+    Porte: porte,
+    Nome: nome,
+    Sexo: sexo,
+    Temperamento: temperamento,
+    ID: id,
+    Especie: especie
+  }
+  const animalsCol = appFirestore.collection(db, 'animais');
+  const pesssoaSnapshot = await appFirestore.addDoc(appFirestore.collection(db, "animais"), animal);
+}
 
 async function getPessoas(db) {
   const pessoasCol = appFirestore.collection(db, 'pessoas');
@@ -114,6 +146,9 @@ async function createModel(db) {
 }
   //deleteModel(db)
   //createModel(db);
+
+  inserirAnimal("nome", "idade", "saude", "fotos", "porte", "sexo", "temperamento", "especie") ;
+  inserirPessoa("nome", "endereco", "email", "idade", "telefone");
   getAnimais(db);
   getPessoas(db);
   //getListagem(db)
