@@ -2,7 +2,6 @@
 const appCloud = require('firebase/app');
 const appFirestore = require('firebase/firestore');
 
-
 //TODO: Trocar os métodos 'require' do javascript para os imports do node
 //import { initializeApp } from 'firebase/app';
 //import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
@@ -33,14 +32,90 @@ async function getAnimais(db) {
   }
 
 
-  async function getPessoas(db) {
-    const pessoasCol = appFirestore.collection(db, 'pessoas');
-    const pesssoaSnapshot = await appFirestore.getDocs(pessoasCol);
-    const pesssoaList = pesssoaSnapshot.docs.map(doc => doc.data());
-    console.log(pesssoaList)
-    return pesssoaList;
-  }
+async function getPessoas(db) {
+  const pessoasCol = appFirestore.collection(db, 'pessoas');
+  const pesssoaSnapshot = await appFirestore.getDocs(pessoasCol);
+  const pesssoaList = pesssoaSnapshot.docs.map(doc => doc.data());
+  console.log(pesssoaList)
+  return pesssoaList;
+}
 
+async function getListagem(db) {
+  const pessoasCol = appFirestore.collection(db, 'listagem');
+  const pesssoaSnapshot = await appFirestore.getDocs(pessoasCol);
+  const pesssoaList = pesssoaSnapshot.docs.map(doc => doc.data());
+  console.log(pesssoaList)
+  return pesssoaList;
+}
+
+async function createModel(db) {
+  try {
+
+    const model1 =   appFirestore.addDoc(appFirestore.collection(db, "animais"), {
+      Saude: 'Otima',
+      Idade: '2',
+      Fotos: 'null',
+      Porte: 'Medio',
+      Nome: 'Wanda',
+      Sexo: 'Feminino',
+      Temperamento: 'Calmo',
+      ID: '1',
+      Especie: 'Bullterrier'
+    })
+
+    const model2 =   appFirestore.addDoc(appFirestore.collection(db, "pessoas"), {
+      Nome: 'Cosmo',
+      ID: '1',
+      Endereco: 'Sao Paulo',
+      Email: 'cosmo@gmail.com',
+      Idade: '10',
+      Telefone: 6189652312
+    })
+
+    const model3 =   appFirestore.addDoc(appFirestore.collection(db, "listagem"), {
+      ID: "Doador - ref - Animal",
+      Responsavel: "Lovelace- ref",
+      Endereco: "Quadra 1815",
+      Dados: "Especia X - Porte Y",
+      Exigencias: "Exigencia X - Exigencia Y",
+      Status: "Disponivel"
+    })
+
+    const model4 =   appFirestore.addDoc(appFirestore.collection(db, "status"), {
+      ID: "Listagem - ref",
+      Atividade: "Adocão / Apadrinhamento / Ajuda",
+      Descricao: "Text",
+    })
+
+    const model5 =   appFirestore.addDoc(appFirestore.collection(db, "adocao"), {
+      ID: "Listagem - ref - Adotante",
+      Chat: "Text",
+      Resposta: "True/False",
+    })
+
+    const model6 =   appFirestore.addDoc(appFirestore.collection(db, "requisitosAdocao"), {
+      ID: "Adocao - ref - Doador",
+      TermoAdocao: ".doc",
+      Foto: "Image",
+      Agendamento: "Date",
+      Acompanhamento: "3 meses",
+    })
+
+    const model7 =   appFirestore.addDoc(appFirestore.collection(db, "historico"), {
+      ID: "Doador - ref - Animal",
+      Listagem: "ref",
+      Avaliacao: "Image",
+      Papel: "Doador",
+    })
+    
+  } catch (error) {
+    
+  }
+}
+  //deleteModel(db)
+  //createModel(db);
   getAnimais(db);
   getPessoas(db);
+  //getListagem(db)
+  
   
