@@ -23,13 +23,15 @@ export default function App() {
       const unsubscribe = auth.onAuthStateChanged((_user) => {
         setUser(_user)
       })
-      return unsubscribe;
+      //return unsubscribe;
     }, []);
   
     return (
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator>
+            {console.log("user")}
+            {console.log(user?.email)}
             {user ? (
               <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />  
             ) : (
