@@ -1,11 +1,13 @@
 // Import the functions you need from the SDKs you need
 const appCloud = require('firebase/app');
 const appFirestore = require('firebase/firestore');
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+//TODO: Trocar os métodos 'require' do javascript para os imports do node
+//import { initializeApp } from 'firebase/app';
+//import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAqb-fVEhDyWPEJdMmFq-fCmQ6LuxpG994",
   authDomain: "miau-database.firebaseapp.com",
@@ -30,5 +32,15 @@ async function getAnimais(db) {
     return animalList;
   }
 
+
+  async function getPessoas(db) {
+    const pessoasCol = appFirestore.collection(db, 'pessoas');
+    const pesssoaSnapshot = await appFirestore.getDocs(pessoasCol);
+    const pesssoaList = pesssoaSnapshot.docs.map(doc => doc.data());
+    console.log(pesssoaList)
+    return pesssoaList;
+  }
+
   getAnimais(db);
+  getPessoas(db);
   
