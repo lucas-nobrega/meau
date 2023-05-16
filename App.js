@@ -1,77 +1,36 @@
-import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { withTheme } from 'react-native-paper';
-import CadastroPessoal from './src/components/Autenticacao/Cadastros/CadastroPessoal';
-import CadastroAnimal from './src/components/Autenticacao/Cadastros/CadastroAnimal';
+import { StyleSheet } from 'react-native';
+import React,{ useEffect, useState } from 'react';
 
+import Home from './src/components/Home';
+import SignIn from './src/components/SignIn';
+import { auth } from './src/config/firebase/firebaseConfig';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 
-function Home({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="Cadastro pessoal"
-          onPress={() => navigation.navigate('CadastroPessoal')}
-        />
-      <Button
-        title="Cadastro animal"
-        onPress={() => navigation.navigate('CadastroAnimal')}
-      />
-    </View>
+export default function App() {
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((_user) => {
+        setUser(_user)
+      })
+      return unsubscribe;
+    }, []);
+  
+    return (
+      <SafeAreaProvider>
+        {user ? <Home /> : <SignIn />}
+      </SafeAreaProvider>
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            title: 'Home',
-            headerStyle: {
-              backgroundColor: '#cfe9e5',
-            },
-            headerTintColor: '#434343',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="CadastroPessoal"
-          component={CadastroPessoal}
-          options={{
-            title: 'Cadastro Pessoal',
-            headerStyle: {
-              backgroundColor: '#cfe9e5',
-            },
-            headerTintColor: '#434343',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="CadastroAnimal"
-          component={CadastroAnimal}
-          options={{
-            title: 'Cadastro Animal',
-            headerStyle: {
-              backgroundColor: '#cfe9e5',
-            },
-            headerTintColor: '#434343',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
