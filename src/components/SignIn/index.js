@@ -102,6 +102,24 @@ export default function SignIn({ navigation }) {
           <Icon name="ios-logo-google" color="white" type='ionicon' />
           &nbsp;&nbsp;&nbsp;ENTRAR COM GOOGLE
       </Button>
+        <Button
+          loading={false}
+          loadingProps={{ size: 'small', color: 'white' }}
+          buttonStyle={{
+            backgroundColor: '#88c9bf',
+            borderRadius: 5,
+          }}
+          titleStyle={{ fontWeight: 'normal', fontSize: 13, color: '#434343' }}
+          containerStyle={{
+            marginHorizontal: 50,
+            height: 50,
+            width: 200,
+            marginVertical: 10,
+          }}
+          onPress={() => navigation.navigate('Tela Erro Autorizacao')}
+        >
+          teste tela de erro de autorização
+        </Button>
       </View>
     </SafeAreaView>
   );
