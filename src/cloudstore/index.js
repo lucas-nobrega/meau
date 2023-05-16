@@ -47,6 +47,30 @@ async function inserirPessoa(nome, endereco, email, idade, telefone) {
   const pesssoaSnapshot = await appFirestore.addDoc(appFirestore.collection(db, "pessoas"), pessoa);
 }
 
+async function deletarPessoa(id) {
+
+  try {
+    const pessoasCol = appFirestore.collection(db, 'pessoas');
+    const pesssoaSnapshot = await appFirestore.deleteDoc(appFirestore.doc(db, "pessoas", id));
+
+  } catch (error) {
+    console.log("Delete person error")
+  }
+
+}
+
+async function deletarAnimal(id) {
+
+  try {
+    const animaisCol = appFirestore.collection(db, 'animais');
+    const animalSnapshot = await appFirestore.deleteDoc(appFirestore.doc(db, "animais", id));
+
+  } catch (error) {
+    console.log("Delete person error")
+  }
+
+}
+
 async function inserirAnimal(nome, idade, saude, fotos, porte, sexo, temperamento, especie) {
   const id = crypto.randomUUID();
   animal = {
@@ -145,10 +169,11 @@ async function createModel(db) {
   }
 }
   //deleteModel(db)
-  //createModel(db);
-
-  inserirAnimal("nome", "idade", "saude", "fotos", "porte", "sexo", "temperamento", "especie") ;
-  inserirPessoa("nome", "endereco", "email", "idade", "telefone");
+  createModel(db);
+  //inserirAnimal("nome", "idade", "saude", "fotos", "porte", "sexo", "temperamento", "especie") ;
+  //inserirPessoa("nome", "endereco", "email", "idade", "telefone");
+  //deletarPessoa("7CyirDfSH2hnAjVyx1mJ")
+  //deletarAnimal("hMLFSzhf7ou2SPu6bbhr")
   getAnimais(db);
   getPessoas(db);
   //getListagem(db)
