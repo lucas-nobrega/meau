@@ -23,6 +23,41 @@ const firebaseConfig = {
 const app = appCloud.initializeApp(firebaseConfig);
 const db = appFirestore.getFirestore(app);
 
+//dDono, idAdotante
+async function mudarDono(idListagem, novoDono) {
+  const listagemCol = appFirestore.collection(db, 'listagem');
+
+  //const filtragem = appFirestore.query(appFirestore.collection(db, 'listagem'), appFirestore.where('Responsavel', '==', 'donoexemplo'));
+  //const filtragem2 = appFirestore.query(appFirestore.collection(db, 'listagem'), appFirestore.where('ID', '==', '1'));
+  
+  
+  const filtragemComposta = appFirestore.query(appFirestore.collection(db, 'listagem'), appFirestore.and( appFirestore.where('Responsavel', '==', 'donoexemplo'),
+  appFirestore.where('ID', '==', idListagem.toString())
+  )
+  );
+
+  const querySnapshot = await appFirestore.getDocs(filtragemComposta);
+  let id = null;
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+    id = doc.id;
+  });
+  //mudar o responsavel pela listagem do animal 
+  
+  console.log(id);
+  const docRef = appFirestore.doc(appFirestore.getFirestore(app), "listagem", id);
+  const listagemRef = appFirestore.updateDoc(docRef, {Responsavel: "novoDono"});
+  //const res = await listagemRef.update({Responsavel: "novoDono"});
+  //const querySnapshot2 = await appFirestore.updateDoc(id);
+  console.log(docRef)
+  
+  return docRef;
+  
+
+  
+}
+
 
 // Get a list of animais from your database
 async function getAnimais(db) {
@@ -169,13 +204,14 @@ async function createModel(db) {
   }
 }
   //deleteModel(db)
-  createModel(db);
+  //createModel(db);
   //inserirAnimal("nome", "idade", "saude", "fotos", "porte", "sexo", "temperamento", "especie") ;
   //inserirPessoa("nome", "endereco", "email", "idade", "telefone");
   //deletarPessoa("7CyirDfSH2hnAjVyx1mJ")
   //deletarAnimal("hMLFSzhf7ou2SPu6bbhr")
-  getAnimais(db);
-  getPessoas(db);
+  //getAnimais(db);
+  //getPessoas(db);
+  mudarDono("referenciaexemplo", "novoDono");
   //getListagem(db)
   
   
