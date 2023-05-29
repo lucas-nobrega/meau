@@ -1,12 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import 'react-native-gesture-handler';
+
+import Home from './src/pages/Home';
+import SigIn from './src/pages/SignIn';
+import CadastroAnimal from './src/pages/Register/CadastroAnimal';
+import CadastroPessoal from './src/pages/Register/CadastroPessoal';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="SigIn" component={SigIn} />
+        <Drawer.Screen name="CadastroAnimal" component={CadastroAnimal} />
+        <Drawer.Screen name="CadadtroPessoal" component={CadastroPessoal} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }
 
