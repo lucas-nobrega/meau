@@ -7,6 +7,8 @@ import { CheckBox } from "@rneui/base";
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
+import { inserirAnimal } from '../../../config/cloudstore';
+
 export default function CadastroAnimal({ navigation }) {
 
     // Inicio: Cadastro de imagem
@@ -28,6 +30,7 @@ export default function CadastroAnimal({ navigation }) {
     };
     // Fim: Cadastro de imagem
 
+    // Inicio: Variáveis de entrada do cadastro de animais
     const options = [{
         label: 'Adoção',
         value: 'Adoção'
@@ -39,14 +42,25 @@ export default function CadastroAnimal({ navigation }) {
         value: 'Ajuda'
     }];
 
-    const [text, setText] = React.useState("");
-    const [especie, setEspecie] = useState(0);
-    const [sexo, setSexo] = useState(0);
-    const [porte, setPorte] = useState(0);
-    const [idade, setIdade] = useState(0);
-    const [temperamento, setTemperamento] = useState(0);
-    const [saude, setSaude] = useState(0);
-    const [exigencias, setExigencias] = useState(0);
+    const [nomeAnimal, setNomeAnimal] = React.useState("");
+    const [especie, setEspecie] = React.useState("");
+    const [sexo, setSexo] = React.useState("");
+    const [porte, setPorte] = React.useState("");
+    const [idade, setIdade] = React.useState("");
+    const [historia, setHistoria] = React.useState("");
+    const [doencas, setDoencas] = React.useState("");
+    
+    ////////const [temperamento, setTemperamento] = React.useState("");
+    ////////const [saude, setSaude] = React.useState("");
+    ////////const [exigencias, setExigencias] = React.useState("");
+    // Fim: Variáveis de entrada do cadastro de animais
+
+    // Inicio: Cadatrar um novo animal
+    const cadastroNovoAnimal = async () => {
+        alert(nomeAnimal)
+        inserirAnimal(nomeAnimal, idade, "", "", porte, sexo, "", especie)
+    }
+    // Fim: Cadatrar um novo animal
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -60,8 +74,8 @@ export default function CadastroAnimal({ navigation }) {
                     <Text style={styles.label}>NOME DO ANIMAL</Text>
                     <TextInput
                         label="Nome do Animal"
-                        value={text}
-                        onChangeText={text => setText(text)}
+                        value={nomeAnimal}
+                        onChangeText={nomeAnimal => setNomeAnimal(nomeAnimal)}
                     />
                 </View>
                 <View>
@@ -78,16 +92,15 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Cachorro'
                             checked={especie === 0}
-                            onPress={() => setIndex(0)}
+                            onPress={() => setEspecie(0)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
-                            
                             wrapperStyle= {styles.radioButton}
                         />
                         <CheckBox
                             title='Gato'
                             checked={especie === 1}
-                            onPress={() => setIndex(1)}
+                            onPress={() => setEspecie(1)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             style={styles.radioButton}
@@ -100,7 +113,7 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Macho'
                             checked={sexo === 0}
-                            onPress={() => setIndex(0)}
+                            onPress={() => setSexo(0)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
 
@@ -109,7 +122,7 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Fêmea'
                             checked={sexo === 1}
-                            onPress={() => setIndex(1)}
+                            onPress={() => setSexo(1)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             style={styles.radioButton}
@@ -122,16 +135,15 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Pequeno'
                             checked={porte === 0}
-                            onPress={() => setIndex(0)}
+                            onPress={() => setPorte(0)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
-
                             wrapperStyle={styles.radioButton}
                         />
                         <CheckBox
                             title='Médio'
                             checked={porte === 1}
-                            onPress={() => setIndex(1)}
+                            onPress={() => setPorte(1)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             style={styles.radioButton}
@@ -139,7 +151,7 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Grande'
                             checked={porte === 2}
-                            onPress={() => setIndex(2)}
+                            onPress={() => setPorte(2)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             style={styles.radioButton}
@@ -152,7 +164,7 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Filhote'
                             checked={idade === 0}
-                            onPress={() => setIndex(0)}
+                            onPress={() => setIdade(0)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
 
@@ -161,7 +173,7 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Adulto'
                             checked={idade === 1}
-                            onPress={() => setIndex(1)}
+                            onPress={() => setIdade(1)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             style={styles.radioButton}
@@ -169,7 +181,7 @@ export default function CadastroAnimal({ navigation }) {
                         <CheckBox
                             title='Idoso'
                             checked={idade === 2}
-                            onPress={() => setIndex(1)}
+                            onPress={() => setIdade(1)}
                             checkedIcon="dot-circle-o"
                             uncheckedIcon="circle-o"
                             style={styles.radioButton}
@@ -264,8 +276,8 @@ export default function CadastroAnimal({ navigation }) {
                     />
                     <TextInput
                         label="Doenças do animal"
-                        value={text}
-                        onChangeText={text => setText(text)}
+                        value={doencas}
+                        onChangeText={doencas => setDoencas(doencas)}
                     />
                 </View>
                 <View>
@@ -333,11 +345,11 @@ export default function CadastroAnimal({ navigation }) {
                     <Text style={styles.label}>SOBRE O ANIMAL</Text>
                     <TextInput
                         label="Compartilhe a história do animal"
-                        value={text}
-                        onChangeText={text => setText(text)}
+                        value={historia}
+                        onChangeText={historia => setHistoria(historia)}
                     />
                 </View>
-                <TouchableOpacity style={styles.button} onPress="">
+                <TouchableOpacity style={styles.button} onPress={() => cadastroNovoAnimal()}>
                     <Text style={styles.buttonText}>COLOCAR PARA ADOÇÃO</Text>
                 </TouchableOpacity>
             </ScrollView>
