@@ -7,9 +7,23 @@ import { CheckBox } from "@rneui/base";
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
-import { inserirAnimal } from '../../../config/cloudstore';
+import { db } from '../../../config/cloudstore';
+//import { collection, addDoc, Timestamp, query, orderBy, onSnapshot } from 'firebase/firestore';
+//import pessoaService from '../../../service/pessoaService';
+
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 export default function CadastroAnimal({ navigation }) {
+
+    const [pessoas, setPessoas] = useState([])
+    const teste = async () => {
+        const q = query(collection(db, "pessoas"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.data());
+        });
+    }
 
     // Inicio: Cadastro de imagem
     const [image, setImage] = useState(null);
@@ -22,7 +36,7 @@ export default function CadastroAnimal({ navigation }) {
         quality: 1,
       });
   
-      console.log(result);
+      //console.log(result);
   
       if (!result.canceled) {
         setImage(result.assets[0].uri);
@@ -66,6 +80,7 @@ export default function CadastroAnimal({ navigation }) {
         <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
             <ScrollView contentContainerStyle={styles.contentContainer}>
                 <Text>Tenho Interesse em cadastrar um animal para:</Text>
+                { console.log(teste())}
                 <RadioButton options={options} />
 
                 <Text>Adoção</Text>
